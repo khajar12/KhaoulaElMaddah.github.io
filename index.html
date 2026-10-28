@@ -1,0 +1,408 @@
+<!doctype html>
+<!--
+  Hi Khaoula! Anything between these comment markers is a NOTE.
+  The browser ignores it, so you can leave notes for yourself anywhere.
+  Search this file for "TODO" to find the things you still need to fill in.
+-->
+<html lang="en">
+
+<!-- ===== HEAD: invisible settings (page title, fonts, design) ===== -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Khaoula El Maddah – CV</title>
+<meta name="description" content="Khaoula El Maddah, PhD student in applied mathematics at the University of Oulu, working on inverse problems for nonlinear PDEs and numerical reconstruction.">
+<meta name="author" content="Khaoula El Maddah">
+<!-- These lines control the preview card when someone shares your link (LinkedIn, email, Slack) -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Khaoula El Maddah – Applied mathematics, inverse problems">
+<meta property="og:description" content="PhD student at the University of Oulu working on inverse problems for nonlinear PDEs and numerical reconstruction.">
+<!-- This helps Google understand the page is about you -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Khaoula El Maddah",
+  "jobTitle": "Doctoral Researcher in Applied Mathematics",
+  "affiliation": { "@type": "CollegeOrUniversity", "name": "University of Oulu" },
+  "alumniOf": ["ENSEIRB-MATMECA, Bordeaux INP"],
+  "email": "mailto:Khaoula.ElMaddah@oulu.fi",
+  "knowsAbout": ["Inverse problems", "Nonlinear partial differential equations", "Inverse scattering", "Numerical analysis", "High-performance computing"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- STYLE = the design. The colours are named on the next lines, so you can change them in one place. -->
+<style>
+  :root {
+    --night: #0f1b2a;      /* header background: Oulu winter night */
+    --aurora: #3fbfa4;     /* the moving waves and accents */
+    --snow: #f3f6f7;       /* page background */
+    --paper: #ffffff;
+    --ink: #1a2836;        /* main text */
+    --muted: #5b6b78;      /* dates and small text */
+    --rule: #dbe3e7;       /* thin lines */
+    --accent: #1f7f6d;     /* links (darker aurora, readable on white) */
+    --badge: #1f7f6d;      /* "Accepted" badge: green reads as good news */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --snow: #0c1622; --paper: #111e2d; --ink: #e4ecef; --muted: #93a4b0;
+      --rule: #22344a; --accent: #5fd3ba; --badge: #3fbfa4;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { background: var(--snow); color: var(--ink);
+         font: 17px/1.65 "STIX Two Text", Georgia, serif; }
+  a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--aurora); outline-offset: 3px; border-radius: 2px; }
+  .sans { font-family: "Public Sans", system-ui, sans-serif; }
+
+  /* ---------- Header with the wave field ---------- */
+  .hero { position: relative; background: var(--night); color: #eef5f4; overflow: hidden;
+          min-height: 440px; display: flex; align-items: flex-end; }
+  .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+                 background: linear-gradient(to right, var(--night) 28%, rgba(15,27,42,0) 72%); }
+  .hero-inner { position: relative; z-index: 1; width: 100%; max-width: 1040px; margin: 0 auto;
+                padding: 72px 24px 56px; }
+  .hero h1 { font-weight: 400; font-style: italic; font-size: clamp(2.8rem, 7.5vw, 5rem);
+             line-height: 1.02; letter-spacing: -0.015em; }
+  .hero h1 span { display: block; font-style: normal; font-weight: 500; }
+  .hero .role { font-family: "Public Sans", system-ui, sans-serif; font-size: 1.05rem;
+                margin-top: 18px; max-width: 30ch; color: #c9dcd8; line-height: 1.5; }
+  .hero .contact { font-family: "Public Sans", system-ui, sans-serif; font-size: .92rem;
+                   margin-top: 26px; display: flex; flex-wrap: wrap; gap: 6px 22px; list-style: none; }
+  .hero .contact a { color: #eef5f4; text-decoration-color: var(--aurora); }
+  .hero .contact li:first-child { color: #9fb6b1; }
+  .print-btn { margin-top: 28px; font: 500 .9rem "Public Sans", system-ui, sans-serif; cursor: pointer;
+               color: var(--night); background: var(--aurora); border: 0; border-radius: 3px; padding: 9px 18px; }
+  .print-btn:hover { background: #6fdcc4; }
+  .caption { position: absolute; right: 24px; bottom: 18px; z-index: 1; max-width: 26ch; text-align: right;
+             font: italic .8rem/1.4 "STIX Two Text", serif; color: #8fb3ab; }
+
+  /* ---------- Main content: margin titles on the left, like a paper ---------- */
+  main { max-width: 1040px; margin: 0 auto; padding: 24px 24px 64px; }
+  .sec { display: grid; grid-template-columns: 200px 1fr; gap: 40px;
+         padding: 44px 0; border-bottom: 1px solid var(--rule); }
+  .sec:last-of-type { border-bottom: 0; }
+  .sec > h2 { font-weight: 500; font-size: 1.35rem; line-height: 1.3; color: var(--ink); }
+  .sec > h2::before { content: "§ "; color: var(--aurora); font-weight: 400; }
+  .lead { font-size: 1.2rem; line-height: 1.6; max-width: 62ch; }
+
+  /* Timeline (experience, education) */
+  .timeline { list-style: none; border-left: 1px solid var(--rule); }
+  .timeline > li { position: relative; padding: 0 0 30px 26px; }
+  .timeline > li:last-child { padding-bottom: 0; }
+  .timeline > li::before { content: ""; position: absolute; left: -5px; top: 9px; width: 9px; height: 9px;
+                           border-radius: 50%; background: var(--paper); border: 2px solid var(--aurora); }
+  .timeline > li.now::before { background: var(--aurora); }
+  .when { font: 500 .82rem "Public Sans", system-ui, sans-serif; color: var(--muted); }
+  h3 { font-size: 1.12rem; font-weight: 600; line-height: 1.35; margin-top: 2px; }
+  .where { font-style: italic; color: var(--muted); }
+  .entry p { margin-top: 4px; max-width: 64ch; }
+
+  /* Publications */
+  .pubs { list-style: none; }
+  .pubs > li { padding-bottom: 26px; }
+  .pubs > li:last-child { padding-bottom: 0; }
+  .pubs h3 a { color: var(--ink); text-decoration-color: var(--aurora); }
+  .pubs .authors { margin-top: 4px; color: var(--muted); }
+  .pubs .authors strong { color: var(--ink); font-weight: 600; }
+  .status { display: inline-block; font: 600 .74rem "Public Sans", system-ui, sans-serif;
+            padding: 2px 8px; border-radius: 3px; margin-left: 8px; vertical-align: 2px; }
+  .status.accepted { background: var(--badge); color: #fff; }
+  @media (prefers-color-scheme: dark) { .status.accepted { color: #0f1b2a; } }
+  .interests { margin-top: 18px; font: .92rem/1.6 "Public Sans", system-ui, sans-serif; color: var(--muted); max-width: 62ch; }
+  .interests b { font-weight: 600; color: var(--ink); }
+  .status.submitted { border: 1px solid var(--muted); color: var(--muted); }
+
+  .venues { list-style: none; margin-top: 8px; padding-left: 14px; border-left: 2px solid var(--aurora); }
+  .venues li { font-size: .95rem; color: var(--muted); margin-bottom: 3px; }
+  .venues .kind { display: inline-block; min-width: 3.6em; font: 600 .78rem "Public Sans", system-ui, sans-serif; color: var(--ink); }
+
+  /* Skills grouped */
+  .skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 36px; }
+  .skills h3 { font: 600 .85rem "Public Sans", system-ui, sans-serif; color: var(--muted); margin-bottom: 4px; }
+
+  /* Languages with level dots */
+  .langs { list-style: none; display: grid; gap: 10px; max-width: 420px; }
+  .langs li { display: grid; grid-template-columns: 90px 1fr auto; align-items: center; gap: 16px; }
+  .dots { display: flex; gap: 6px; }
+  .dots i { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--aurora); }
+  .dots i.on { background: var(--aurora); }
+  .langs .lvl { font: .85rem "Public Sans", system-ui, sans-serif; color: var(--muted); }
+
+  .plain { list-style: none; }
+  .plain li { margin-bottom: 6px; }
+  .plain span { color: var(--muted); font-style: italic; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+
+  footer { text-align: center; font: .8rem "Public Sans", system-ui, sans-serif; color: var(--muted); padding: 0 24px 40px; }
+
+  @media (max-width: 760px) {
+    body { font-size: 16px; }
+    .hero { min-height: 520px; }
+    .hero::after { background: linear-gradient(to top, var(--night) 52%, rgba(15,27,42,0) 88%); }
+    .caption { display: none; }
+    .sec { grid-template-columns: 1fr; gap: 16px; padding: 34px 0; }
+    .skills, .split { grid-template-columns: 1fr; gap: 18px; }
+  }
+  @media print {
+    body { background: #fff; color: #000; font-size: 11pt; }
+    .hero { min-height: 0; background: #fff; color: #000; }
+    .hero canvas, .hero::after, .print-btn, .caption, footer { display: none; }
+    .hero .role, .hero .contact li:first-child, .hero .contact a { color: #333; }
+    .hero-inner { padding: 0 0 12px; }
+    main { padding: 0; }
+    .sec { padding: 14px 0; grid-template-columns: 150px 1fr; break-inside: avoid; }
+  }
+</style>
+</head>
+
+<!-- ===== BODY: everything people actually SEE on the page ===== -->
+<body>
+
+<!-- ---------- HEADER: name, title, contact ---------- -->
+<header class="hero">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <h1>Khaoula <span>El Maddah</span></h1>
+    <p class="role">PhD student in applied mathematics, working on inverse problems at the University of Oulu</p>
+    <ul class="contact">
+      <li>Oulu, Finland</li>
+      <li><a href="mailto:Khaoula.ElMaddah@oulu.fi">Khaoula.ElMaddah@oulu.fi</a></li>
+      <li><a href="https://arxiv.org/search/?query=El+Maddah%2C+Khaoula&amp;searchtype=author">Papers on arXiv</a></li>
+      <!-- TODO: to show your GitHub, replace "yourusername" (twice) and remove the comment markers around the line:
+      <li><a href="https://github.com/yourusername">github.com/yourusername</a></li>
+      -->
+      <!-- Same for Google Scholar or ORCID if you have them:
+      <li><a href="https://orcid.org/0000-0000-0000-0000">ORCID</a></li>
+      -->
+    </ul>
+    <button class="print-btn" type="button" onclick="window.print()">Download PDF</button>
+  </div>
+  <p class="caption">A plane wave scattering off hidden obstacles. Recovering them from the waves is an inverse problem.</p>
+</header>
+
+<main>
+
+  <!-- ---------- ABOUT ---------- -->
+  <section class="sec">
+    <h2>About</h2>
+    <div>
+      <p class="lead">I study inverse problems for nonlinear partial differential equations: recovering what is hidden inside a medium from measurements taken outside it. My work combines uniqueness theory with numerical reconstruction methods. Before Oulu, I trained as an engineer in mathematics and high-performance computing at ENSEIRB-MATMECA and optimised scientific software at Dassault Systèmes. I have presented my work at conferences in Finland, Germany and Greece.</p>
+      <p class="interests"><b>Research interests:</b> inverse problems, nonlinear PDEs, inverse scattering, numerical reconstruction methods, scientific and high-performance computing.</p>
+    </div>
+  </section>
+
+  <!-- ---------- PUBLICATIONS AND TALKS (newest first; <strong> makes your name bold).
+       Each paper lists where you presented it. PDF links work once the PDFs are uploaded next to this file. ---------- -->
+  <section class="sec">
+    <h2>Publications and talks</h2>
+    <ol class="pubs">
+      <li>
+        <h3><a href="https://arxiv.org/abs/2606.13337">Reconstruction for an inverse scattering problem with a Kerr type nonlinearity</a><span class="status submitted">Submitted</span></h3>
+        <p class="authors"><strong>K. El Maddah</strong>, M. Lassas, T. Liimatainen, V. Pohjola, T. Tyni. arXiv:2606.13337, 2026.</p>
+        <ul class="venues">
+          <li><span class="kind">Talk</span> MathSEE Symposium, Karlsruhe Institute of Technology, Germany, September 2026. <a href="slides-mathsee-karlsruhe-2026.pdf">Slides</a></li>
+        </ul>
+      </li>
+      <li>
+        <h3><a href="https://arxiv.org/abs/2512.16269">Numerical reconstruction of Schrödinger equations with quadratic nonlinearities</a><span class="status accepted">Accepted</span></h3>
+        <!-- TODO: add the journal name, e.g.  Accepted in <em>Journal Name</em>.  -->
+        <p class="authors"><strong>K. El Maddah</strong>, M. Lassas, T. Tyni. arXiv:2512.16269, 2025.</p>
+        <ul class="venues">
+          <li><span class="kind">Poster</span> 15th AIMS Conference on Dynamical Systems, Differential Equations and Applications, Athens, Greece, July 2026. <a href="poster-aims-athens-2026.pdf">Poster</a></li>
+          <li><span class="kind">Talk</span> Inverse Days 2025, Finnish Inverse Problems Society, Helsinki, Finland. <a href="slides-inverse-days-helsinki-2025.pdf">Slides</a></li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ---------- EDUCATION ---------- -->
+  <section class="sec">
+    <h2>Education</h2>
+    <ul class="timeline">
+      <li class="now entry">
+        <p class="when">Jan 2025 – present</p>
+        <h3>PhD in applied mathematics <span class="where">University of Oulu, Finland</span></h3>
+        <p class="when">Research Unit of Applied and Computational Mathematics</p>
+        <p>Doctoral researcher working on inverse problems for nonlinear PDEs, from uniqueness results to numerical reconstruction. One paper accepted, one submitted, with talks in Finland and Germany and a poster in Greece.</p>
+      </li>
+      <li class="entry">
+        <p class="when">2021 – 2024</p>
+        <h3>Engineering degree <span class="where">ENSEIRB-MATMECA, Bordeaux INP, France</span></h3>
+        <p>Mathematics and mechanics, specialising in high-performance computing, with research initiation courses.</p>
+      </li>
+      <li class="entry">
+        <p class="when">2019 – 2021</p>
+        <h3>Preparatory classes (CPGE) <span class="where">LYDEX, Benguerir, Morocco</span></h3>
+        <p>Intensive mathematics and physics for admission to French engineering schools.</p>
+      </li>
+      <li class="entry">
+        <p class="when">2016 – 2019</p>
+        <h3>Baccalaureate in mathematical sciences <span class="where">Lycée Mohammed VI, Dakhla, Morocco</span></h3>
+        <p>Graduated with highest honours (mention Très Bien).</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ---------- EXPERIENCE (each <li> is one entry; copy one to add more) ---------- -->
+  <section class="sec">
+    <h2>Experience</h2>
+    <ul class="timeline">
+      <li class="entry">
+        <p class="when">Mar 2024 – Aug 2024</p>
+        <h3>Quantum model software optimisation intern <span class="where">Dassault Systèmes, France</span></h3>
+        <p>Optimised software for the modelling and validation of quantum scientific models.</p>
+      </li>
+      <li class="entry">
+        <p class="when">Jun 2023 – Aug 2023</p>
+        <h3>Research intern <span class="where">COSYS/GRETTIA, France</span></h3>
+        <p>Built an agent-based macroscopic traffic simulator in Python, applied to large real road networks.</p>
+      </li>
+      <li class="entry">
+        <p class="when">Jul 2022 – Aug 2022</p>
+        <h3>Intern <span class="where">Attijariwafa Bank Europe, France</span></h3>
+        <p>Contributed to financial analysis and reporting.</p>
+      </li>
+      <li class="entry">
+        <p class="when">2021 – 2023</p>
+        <h3>Tutor in mathematics and physics <span class="where">France</span></h3>
+        <p>Academic support for high-school students.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ---------- PROJECTS ---------- -->
+  <section class="sec">
+    <h2>Academic projects</h2>
+    <ul class="timeline">
+      <li class="entry">
+        <p class="when">2023 – 2024</p>
+        <h3>Linear Boltzmann equation by Monte Carlo</h3>
+        <p>Solved the linear Boltzmann equation with a non-intrusive Monte Carlo approach in C++.</p>
+      </li>
+      <li class="entry">
+        <p class="when">2022 – 2023</p>
+        <h3>Rupture in unidirectional composite materials</h3>
+        <p>Modelled rupture propagation in a unidirectional composite in C++.</p>
+      </li>
+      <li class="entry">
+        <p class="when">2021 – 2022</p>
+        <h3>Human walking model</h3>
+        <p>Mathematical modelling and numerical simulation of knee-joint movement in Fortran 90.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ---------- HONOURS ---------- -->
+  <section class="sec">
+    <h2>Honours</h2>
+    <ul class="plain">
+      <li>Bronze medal, Pan African Mathematics Olympiad <span>South Africa, 2019</span></li>
+      <li>Bronze medal, Mediterranean Youth Mathematical Championship <span>Italy, 2019</span></li>
+    </ul>
+  </section>
+
+  <!-- ---------- SKILLS ---------- -->
+  <section class="sec">
+    <h2>Computing</h2>
+    <div class="skills">
+      <div><h3>Programming</h3><p>Python, C++, Fortran 90, R, Matlab, SQL</p></div>
+      <div><h3>Parallel computing</h3><p>MPI, OpenMP, CUDA</p></div>
+      <div><h3>Simulation</h3><p>FreeFem++, Abaqus, Fluent</p></div>
+      <div><h3>Tools</h3><p>Git, LaTeX</p></div>
+    </div>
+  </section>
+
+  <!-- ---------- LANGUAGES: class="on" fills a dot (5 dots = native) ---------- -->
+  <section class="sec">
+    <h2>Languages</h2>
+    <ul class="langs">
+      <li>Arabic  <span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="lvl">Native</span></li>
+      <li>French  <span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="lvl">Bilingual</span></li>
+      <li>English <span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="lvl">Advanced</span></li>
+      <li>Spanish <span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="lvl">Basic</span></li>
+      <li>Finnish <span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="lvl">Basic</span></li>
+    </ul>
+  </section>
+
+  <!-- ---------- VOLUNTEERING + INTERESTS ---------- -->
+  <section class="sec">
+    <h2>Beyond research</h2>
+    <div class="split">
+      <ul class="plain">
+        <li>Ingenib <span>recruitment forum association</span></li>
+        <li>Linkee <span>food aid for students</span></li>
+        <li>Zik <span>music club</span></li>
+      </ul>
+      <ul class="plain">
+        <li>Taekwondo <span>1st dan black belt</span></li>
+        <li>Reading</li>
+        <li>Crochet</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+<footer>Hosted on GitHub Pages</footer>
+
+<!-- ===== SCRIPT: draws the moving waves in the header. You don't need to edit this. ===== -->
+<script>
+(function () {
+  var canvas = document.getElementById('field');
+  var ctx = canvas.getContext('2d');
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var SCALE = 3, W, H, img;
+  // Hidden scatterers: [x, y, strength] as fractions of the header size
+  var scat = [[0.70, 0.30, 1.1], [0.84, 0.62, 0.9], [0.60, 0.70, 0.7]];
+  var night = [15, 27, 42], aurora = [63, 191, 164];
+
+  function resize() {
+    var r = canvas.getBoundingClientRect();
+    W = Math.max(1, Math.ceil(r.width / SCALE));
+    H = Math.max(1, Math.ceil(r.height / SCALE));
+    canvas.width = W; canvas.height = H;
+    img = ctx.createImageData(W, H);
+    if (still) draw(0);
+  }
+
+  function draw(t) {
+    var k = 0.19, w = 1.6, dx = Math.cos(-0.3), dy = Math.sin(-0.3);
+    var d = img.data, i = 0;
+    var pts = scat.map(function (s) { return [s[0] * W, s[1] * H, s[2]]; });
+    for (var y = 0; y < H; y++) {
+      for (var x = 0; x < W; x++) {
+        var u = 0.55 * Math.sin(k * (x * dx + y * dy) - w * t);
+        for (var j = 0; j < pts.length; j++) {
+          var rx = x - pts[j][0], ry = y - pts[j][1];
+          var r = Math.sqrt(rx * rx + ry * ry);
+          u += pts[j][2] * Math.sin(k * r - w * t) / Math.sqrt(1 + 0.12 * r);
+        }
+        var v = Math.max(0, Math.min(1, (u + 0.4) / 2.2));
+        v = v * v * 0.85;
+        d[i++] = night[0] + (aurora[0] - night[0]) * v;
+        d[i++] = night[1] + (aurora[1] - night[1]) * v;
+        d[i++] = night[2] + (aurora[2] - night[2]) * v;
+        d[i++] = 255;
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+
+  function loop(ms) { draw(ms / 1000); requestAnimationFrame(loop); }
+
+  window.addEventListener('resize', resize);
+  resize();
+  if (!still) requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
