@@ -1,23 +1,14 @@
 <!doctype html>
-<!--
-  Hi Khaoula! Anything between these comment markers is a NOTE.
-  The browser ignores it, so you can leave notes for yourself anywhere.
-  Search this file for "TODO" to find the things you still need to fill in.
--->
 <html lang="en">
-
-<!-- ===== HEAD: invisible settings (page title, fonts, design) ===== -->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Khaoula El Maddah – CV</title>
 <meta name="description" content="Khaoula El Maddah, PhD student in applied mathematics at the University of Oulu, working on inverse problems for nonlinear PDEs and numerical reconstruction.">
 <meta name="author" content="Khaoula El Maddah">
-<!-- These lines control the preview card when someone shares your link (LinkedIn, email, Slack) -->
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Khaoula El Maddah – Applied mathematics, inverse problems">
 <meta property="og:description" content="PhD student at the University of Oulu working on inverse problems for nonlinear PDEs and numerical reconstruction.">
-<!-- This helps Google understand the page is about you -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -33,19 +24,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-
-<!-- STYLE = the design. The colours are named on the next lines, so you can change them in one place. -->
 <style>
   :root {
-    --night: #0f1b2a;      /* header background: Oulu winter night */
-    --aurora: #3fbfa4;     /* the moving waves and accents */
-    --snow: #f3f6f7;       /* page background */
+    --night: #0f1b2a;
+    --aurora: #3fbfa4;
+    --snow: #f3f6f7;
     --paper: #ffffff;
-    --ink: #1a2836;        /* main text */
-    --muted: #5b6b78;      /* dates and small text */
-    --rule: #dbe3e7;       /* thin lines */
-    --accent: #1f7f6d;     /* links (darker aurora, readable on white) */
-    --badge: #1f7f6d;      /* "Accepted" badge: green reads as good news */
+    --ink: #1a2836;
+    --muted: #5b6b78;
+    --rule: #dbe3e7;
+    --accent: #1f7f6d;
+    --badge: #1f7f6d;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -53,7 +42,6 @@
       --rule: #22344a; --accent: #5fd3ba; --badge: #3fbfa4;
     }
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { -webkit-text-size-adjust: 100%; }
   body { background: var(--snow); color: var(--ink);
@@ -62,8 +50,6 @@
   a:hover { text-decoration-thickness: 2px; }
   a:focus-visible, button:focus-visible { outline: 2px solid var(--aurora); outline-offset: 3px; border-radius: 2px; }
   .sans { font-family: "Public Sans", system-ui, sans-serif; }
-
-  /* ---------- Header with the wave field ---------- */
   .hero { position: relative; background: var(--night); color: #eef5f4; overflow: hidden;
           min-height: 440px; display: flex; align-items: flex-end; }
   .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
@@ -85,8 +71,6 @@
   .print-btn:hover { background: #6fdcc4; }
   .caption { position: absolute; right: 24px; bottom: 18px; z-index: 1; max-width: 26ch; text-align: right;
              font: italic .8rem/1.4 "STIX Two Text", serif; color: #8fb3ab; }
-
-  /* ---------- Main content: margin titles on the left, like a paper ---------- */
   main { max-width: 1040px; margin: 0 auto; padding: 24px 24px 64px; }
   .sec { display: grid; grid-template-columns: 200px 1fr; gap: 40px;
          padding: 44px 0; border-bottom: 1px solid var(--rule); }
@@ -94,8 +78,6 @@
   .sec > h2 { font-weight: 500; font-size: 1.35rem; line-height: 1.3; color: var(--ink); }
   .sec > h2::before { content: "§ "; color: var(--aurora); font-weight: 400; }
   .lead { font-size: 1.2rem; line-height: 1.6; max-width: 62ch; }
-
-  /* Timeline (experience, education) */
   .timeline { list-style: none; border-left: 1px solid var(--rule); }
   .timeline > li { position: relative; padding: 0 0 30px 26px; }
   .timeline > li:last-child { padding-bottom: 0; }
@@ -106,8 +88,6 @@
   h3 { font-size: 1.12rem; font-weight: 600; line-height: 1.35; margin-top: 2px; }
   .where { font-style: italic; color: var(--muted); }
   .entry p { margin-top: 4px; max-width: 64ch; }
-
-  /* Publications */
   .pubs { list-style: none; }
   .pubs > li { padding-bottom: 26px; }
   .pubs > li:last-child { padding-bottom: 0; }
@@ -121,30 +101,22 @@
   .interests { margin-top: 18px; font: .92rem/1.6 "Public Sans", system-ui, sans-serif; color: var(--muted); max-width: 62ch; }
   .interests b { font-weight: 600; color: var(--ink); }
   .status.submitted { border: 1px solid var(--muted); color: var(--muted); }
-
   .venues { list-style: none; margin-top: 8px; padding-left: 14px; border-left: 2px solid var(--aurora); }
   .venues li { font-size: .95rem; color: var(--muted); margin-bottom: 3px; }
   .venues .kind { display: inline-block; min-width: 3.6em; font: 600 .78rem "Public Sans", system-ui, sans-serif; color: var(--ink); }
-
-  /* Skills grouped */
   .skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 36px; }
   .skills h3 { font: 600 .85rem "Public Sans", system-ui, sans-serif; color: var(--muted); margin-bottom: 4px; }
-
-  /* Languages with level dots */
   .langs { list-style: none; display: grid; gap: 10px; max-width: 420px; }
   .langs li { display: grid; grid-template-columns: 90px 1fr auto; align-items: center; gap: 16px; }
   .dots { display: flex; gap: 6px; }
   .dots i { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--aurora); }
   .dots i.on { background: var(--aurora); }
   .langs .lvl { font: .85rem "Public Sans", system-ui, sans-serif; color: var(--muted); }
-
   .plain { list-style: none; }
   .plain li { margin-bottom: 6px; }
   .plain span { color: var(--muted); font-style: italic; }
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
-
   footer { text-align: center; font: .8rem "Public Sans", system-ui, sans-serif; color: var(--muted); padding: 0 24px 40px; }
-
   @media (max-width: 760px) {
     body { font-size: 16px; }
     .hero { min-height: 520px; }
@@ -164,11 +136,8 @@
   }
 </style>
 </head>
-
-<!-- ===== BODY: everything people actually SEE on the page ===== -->
 <body>
 
-<!-- ---------- HEADER: name, title, contact ---------- -->
 <header class="hero">
   <canvas id="field" aria-hidden="true"></canvas>
   <div class="hero-inner">
@@ -178,12 +147,6 @@
       <li>Oulu, Finland</li>
       <li><a href="mailto:Khaoula.ElMaddah@oulu.fi">Khaoula.ElMaddah@oulu.fi</a></li>
       <li><a href="https://arxiv.org/search/?query=El+Maddah%2C+Khaoula&amp;searchtype=author">Papers on arXiv</a></li>
-      <!-- TODO: to show your GitHub, replace "yourusername" (twice) and remove the comment markers around the line:
-      <li><a href="https://github.com/yourusername">github.com/yourusername</a></li>
-      -->
-      <!-- Same for Google Scholar or ORCID if you have them:
-      <li><a href="https://orcid.org/0000-0000-0000-0000">ORCID</a></li>
-      -->
     </ul>
     <button class="print-btn" type="button" onclick="window.print()">Download PDF</button>
   </div>
@@ -192,7 +155,6 @@
 
 <main>
 
-  <!-- ---------- ABOUT ---------- -->
   <section class="sec">
     <h2>About</h2>
     <div>
@@ -201,8 +163,6 @@
     </div>
   </section>
 
-  <!-- ---------- PUBLICATIONS AND TALKS (newest first; <strong> makes your name bold).
-       Each paper lists where you presented it. PDF links work once the PDFs are uploaded next to this file. ---------- -->
   <section class="sec">
     <h2>Publications and talks</h2>
     <ol class="pubs">
@@ -215,7 +175,7 @@
       </li>
       <li>
         <h3><a href="https://arxiv.org/abs/2512.16269">Numerical reconstruction of Schrödinger equations with quadratic nonlinearities</a><span class="status accepted">Accepted</span></h3>
-        <!-- TODO: add the journal name, e.g.  Accepted in <em>Journal Name</em>.  -->
+
         <p class="authors"><strong>K. El Maddah</strong>, M. Lassas, T. Tyni. arXiv:2512.16269, 2025.</p>
         <ul class="venues">
           <li><span class="kind">Poster</span> 15th AIMS Conference on Dynamical Systems, Differential Equations and Applications, Athens, Greece, July 2026. <a href="poster-aims-athens-2026.pdf">Poster</a></li>
@@ -225,7 +185,6 @@
     </ol>
   </section>
 
-  <!-- ---------- EDUCATION ---------- -->
   <section class="sec">
     <h2>Education</h2>
     <ul class="timeline">
@@ -253,7 +212,6 @@
     </ul>
   </section>
 
-  <!-- ---------- EXPERIENCE (each <li> is one entry; copy one to add more) ---------- -->
   <section class="sec">
     <h2>Experience</h2>
     <ul class="timeline">
@@ -280,7 +238,6 @@
     </ul>
   </section>
 
-  <!-- ---------- PROJECTS ---------- -->
   <section class="sec">
     <h2>Academic projects</h2>
     <ul class="timeline">
@@ -302,7 +259,6 @@
     </ul>
   </section>
 
-  <!-- ---------- HONOURS ---------- -->
   <section class="sec">
     <h2>Honours</h2>
     <ul class="plain">
@@ -311,7 +267,6 @@
     </ul>
   </section>
 
-  <!-- ---------- SKILLS ---------- -->
   <section class="sec">
     <h2>Computing</h2>
     <div class="skills">
@@ -322,7 +277,6 @@
     </div>
   </section>
 
-  <!-- ---------- LANGUAGES: class="on" fills a dot (5 dots = native) ---------- -->
   <section class="sec">
     <h2>Languages</h2>
     <ul class="langs">
@@ -334,7 +288,6 @@
     </ul>
   </section>
 
-  <!-- ---------- VOLUNTEERING + INTERESTS ---------- -->
   <section class="sec">
     <h2>Beyond research</h2>
     <div class="split">
@@ -354,14 +307,12 @@
 </main>
 <footer>Hosted on GitHub Pages</footer>
 
-<!-- ===== SCRIPT: draws the moving waves in the header. You don't need to edit this. ===== -->
 <script>
 (function () {
   var canvas = document.getElementById('field');
   var ctx = canvas.getContext('2d');
   var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var SCALE = 3, W, H, img;
-  // Hidden scatterers: [x, y, strength] as fractions of the header size
   var scat = [[0.70, 0.30, 1.1], [0.84, 0.62, 0.9], [0.60, 0.70, 0.7]];
   var night = [15, 27, 42], aurora = [63, 191, 164];
 
